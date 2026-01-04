@@ -2,7 +2,8 @@
   "name": "honogmi",
   "scripts": {
     "server": "bun run --hot server/index.ts",
-    "client": "cd clientgmi && bun run dev"
+    "client": "cd clientgmi && bun run dev",
+    "db:up": "docker compose up -d"
   },
   "dependencies": {
     "hono": "^4.11.3"
