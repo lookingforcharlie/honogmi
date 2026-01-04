@@ -1,7 +1,8 @@
 {
   "name": "honogmi",
   "scripts": {
-    "dev": "bun run --hot src/index.ts"
+    "server": "bun run --hot server/index.ts",
+    "client": "cd clientgmi && bun run dev"
   },
   "dependencies": {
     "hono": "^4.11.3"
