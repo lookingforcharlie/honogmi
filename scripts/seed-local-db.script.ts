@@ -13,7 +13,36 @@ async function seedLocalDb() {
   await reset(db, schema)
 
   // Seed database with 1000 users and 1000 todos
-  await seed(db, schema, { count: 1000 })
+  await seed(db, schema, { count: 20 }).refine((f) => ({
+    todoTable: {
+      columns: {
+        title: f.valuesFromArray({
+          values: [
+            'Laundry Day',
+            'Buy Groceries',
+            'Walk the Dog',
+            'Finish Homework',
+            'Call Mom',
+            'Book Doctor Appointment',
+            'Write Blog Post',
+            'Pay Bills',
+            'Read a Book',
+            'Clean the Kitchen',
+            'Go for a Run',
+            'Plan Vacation',
+            'Organize Closet',
+            'Schedule Meeting',
+            'Fix the Sink',
+            'Reply to Emails',
+            'Water the Plants',
+            'Make a Presentation',
+            'Renew Subscription',
+            'Order Takeout',
+          ],
+        }),
+      },
+    },
+  }))
 }
 
 // End the pool after seeding

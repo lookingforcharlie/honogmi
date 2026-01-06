@@ -9,7 +9,7 @@
 - Postgres running in docker locally
 - [Drizzle as ORM](https://orm.drizzle.team/docs/get-started/postgresql-new)
   - no need to install dotenv and tsx, because bun can read .env and compile ts natively
-  - [use drizzle seed to seed the db for development](https://orm.drizzle.team/docs/seed-overview#drizzle-seed)
+  - [use drizzle seed and refinement to seed the db for development](https://orm.drizzle.team/docs/seed-overview#drizzle-seed)
 
 ## Commands
 
