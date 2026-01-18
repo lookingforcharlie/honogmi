@@ -5,6 +5,7 @@ import { hc } from 'hono/client'
 // For implementing RPC pattern, we need to share the AppType from server to client
 import type { AppType } from '../../../../server/index.ts'
 
+// Creating a hono RPC client with full hono router type inference
 // RPC: share the AppType from server to client, so we don't need to create an todo interface in the client
 // equals to const client = hc<AppType>('http://localhost:5000')
 const client = hc<AppType>('/')
@@ -12,11 +13,6 @@ const client = hc<AppType>('/')
 export const Route = createFileRoute('/demo/tanstack-query')({
   component: TanStackQueryDemo,
 })
-
-// type Todo = {
-//   id: number
-//   name: string
-// }
 
 function TanStackQueryDemo() {
   const {
@@ -27,8 +23,14 @@ function TanStackQueryDemo() {
   } = useQuery({
     queryKey: ['todos'],
     // queryFn: () => fetch('/api/todos').then((res) => res.json()),
-    queryFn: () => client.api.todos.$get().then((res) => res.json()),
-    placeholderData: [],
+    queryFn: async () => {
+      // .$get() is Hono's RPC (Remote Procedure Call) syntax for fetching data from the server
+      const res = await client.api.todos.$get()
+      if (!res.ok) {
+        throw new Error('Failed to fetch todos')
+      }
+      return res.json()
+    },
   })
 
   const isInitialLoading = isPending && data.length === 0
@@ -87,9 +89,15 @@ function TanStackQueryDemo() {
               {data.map((t) => (
                 <li
                   key={t.id}
-                  className="bg-white/10 border border-white/20 rounded-lg p-3 backdrop-blur-sm shadow-md"
+                  className="bg-white/10 border border-white/20 rounded-lg p-3 backdrop-blur-sm shadow-md flex items-center justify-between"
                 >
-                  <span className="text-lg text-white">{t.name}</span>
+                  <span className="text-lg text-white">{t.title}</span>
+                  <button
+                    className="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded-lg transition-colors"
+                    onClick={() => console.log('delete', t.id)}
+                  >
+                    Delete
+                  </button>
                 </li>
               ))}
             </ul>

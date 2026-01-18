@@ -2,13 +2,12 @@ import { useEffect, useRef, useState } from 'react'
 import { useStore } from '@tanstack/react-store'
 import { Store } from '@tanstack/store'
 
-import { Send, X, ChevronRight } from 'lucide-react'
+import { ChevronRight, Send, X } from 'lucide-react'
 import { Streamdown } from 'streamdown'
 
-import { useGuitarRecommendationChat } from '@/lib/example.ai-hook'
-import type { ChatMessages } from '@/lib/example.ai-hook'
-
 import GuitarRecommendation from './example-GuitarRecommendation'
+import type { ChatMessages } from '@/lib/example.ai-hook'
+import { useGuitarRecommendationChat } from '@/lib/example.ai-hook'
 
 export const showAIAssistant = new Store(false)
 

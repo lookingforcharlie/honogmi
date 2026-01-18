@@ -4,7 +4,7 @@ import { anthropic } from '@tanstack/ai-anthropic'
 
 import { getGuitars, recommendGuitarToolDef } from '@/lib/example.guitar-tools'
 
-const SYSTEM_PROMPT = `You are a helpful assistant for a store that sells guitars.
+const SYSTEM_PROMPT = `You are a manager for a store that sells guitars.
 
 CRITICAL INSTRUCTIONS - YOU MUST FOLLOW THIS EXACT WORKFLOW:
 

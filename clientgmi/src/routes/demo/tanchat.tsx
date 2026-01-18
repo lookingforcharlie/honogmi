@@ -3,8 +3,8 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Send, Square } from 'lucide-react'
 import { Streamdown } from 'streamdown'
 
-import { useGuitarRecommendationChat } from '@/lib/example.ai-hook'
 import type { ChatMessages } from '@/lib/example.ai-hook'
+import { useGuitarRecommendationChat } from '@/lib/example.ai-hook'
 
 import GuitarRecommendation from '@/components/example-GuitarRecommendation'
 
